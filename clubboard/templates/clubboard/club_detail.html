@@ -20,5 +20,13 @@
             + Add Comment
             {% include './icons/file-earmark-plus.svg' %}
         </a>
+        {% for post in posts %}
+            <div>
+                <p>{{ post.text }}</p>
+                <small>By {{ post.authors }} on {{ post.created_date }}</small>
+            </div>
+        {% empty %}
+            <p>No posts yet.</p>
+        {% endfor %}
     </article>
 {% endblock %}

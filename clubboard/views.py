@@ -17,10 +17,11 @@ def post_list(request):
 
 def club_detail(request, pk):
     club = get_object_or_404(Club, pk=pk)
+    posts = club.posts.filter(published_date__lte=timezone.now()).order_by('-created_date')
     if 'Add Interest' in request.POST:
-        club.interest +=1
+        club.interest += 1
         club.save()
-    return render(request, 'clubboard/club_detail.html', {'club': club})
+    return render(request, 'clubboard/club_detail.html', {'club': club, 'posts': posts})   
 
 def post_new(request):
     if request.method == "POST":

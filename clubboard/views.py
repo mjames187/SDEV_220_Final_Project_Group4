@@ -18,21 +18,22 @@ def post_list(request):
 def club_detail(request, pk):
     club = get_object_or_404(Club, pk=pk)
     posts = club.posts.filter(published_date__lte=timezone.now()).order_by('-created_date')
-    if 'Add Interest' in request.POST:
+    if request.method == 'POST' and 'add_interest' in request.POST:
         club.interest += 1
         club.save()
     return render(request, 'clubboard/club_detail.html', {'club': club, 'posts': posts})   
 
-def post_new(request):
+def post_new(request, club_pk):
+    club = get_object_or_404(Club, pk=club_pk)
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
             post.authors = request.user
+            post.club = club
             post.published_date = timezone.now()
             post.save()
-            return redirect(club_list)
-            #return redirect('club_detail', pk=post.pk)
+            return redirect('club_detail', pk=club.pk)
     else:
         form = PostForm()
     return render(request, 'clubboard/post_edit.html', {'form': form})

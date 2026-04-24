@@ -11,12 +11,12 @@
         <p>Interest: {{ club.interest }}
         <form action="" method="post">
             {% csrf_token %}
-            <button type="submit" name="Add Interest"></i></button>
+            <button type="submit" name="add_interest" value="1">Add Interest</button>
         </form>
         <p>{{ club.start_time }} - {{ club.end_time }} </br></p>
         <p>{{ club.location|linebreaksbr }}</p>
         <p>{{ club.description|linebreaksbr }}</p>
-        <a href="{% url 'post_new' %}" class="my-link">
+        <a href="{% url 'post_new' club.pk %}" class="my-link">
             + Add Comment
             {% include './icons/file-earmark-plus.svg' %}
         </a>

@@ -12,27 +12,9 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AddField(
-            model_name='club',
-            name='slug',
-            field=models.SlugField(default='', max_length=40, unique=True),
-            preserve_default=False,
-        ),
-        migrations.AddField(
             model_name='post',
             name='club',
             field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, related_name='posts', to='clubboard.club'),
-            preserve_default=False,
-        ),
-        migrations.AddField(
-            model_name='post',
-            name='slug',
-            field=models.SlugField(default='', max_length=40, unique=True),
-            preserve_default=False,
-        ),
-        migrations.AddField(
-            model_name='post',
-            name='title',
-            field=models.CharField(default='', max_length=50),
             preserve_default=False,
         ),
     ]

@@ -1,6 +1,6 @@
 h1 a, h2 a {
-    color: #C25100;
-    font-family: 'Lobster';
+    color: #b800c2;
+    font-family: 'Ink Free';
 }
 
 body {
@@ -8,7 +8,7 @@ body {
 }
 
 .page-header {
-    background-color: #C25100;
+    background-image: linear-gradient(180deg,#3e0065,#b800c2);
     margin-top: 0;
     margin-bottom: 40px;
     padding: 20px 20px 20px 40px;
@@ -27,7 +27,7 @@ h1,
 h2,
 h3,
 h4 {
-    font-family: 'Lobster', cursive;
+    font-family: 'Ink Free', cursive;
 }
 
 .date {
@@ -77,4 +77,9 @@ h4 {
 .btn-secondary:hover {
     color: #FFFFFF;
     background-color: #C25100;
+}
+
+.outlined {
+    border: #800086;
+    border-style: solid;
 }

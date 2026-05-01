@@ -9,4 +9,5 @@ urlpatterns = [
     path('post/<int:post_pk>/reply/new/', views.reply_new, name='reply_new'),
     path('register/', views.register, name='register'),
     path('logout/', views.user_logout, name='logout'),
+    path('filter', views.filter, name='filter'),
 ]   

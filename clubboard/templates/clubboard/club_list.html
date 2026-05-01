@@ -2,14 +2,16 @@
 
 {% block content %}
     {% for club in clubs %}
-        <article class="club">
-            <time class="date">
-                {{ club.published_date }}
-            </time>
-            <h2><a href="{% url 'club_detail' pk=club.pk %}">{{ club.title }}</a></h2>
-            <p>Interest: {{ club.interest|linebreaksbr }}</p>
-            <p>{{ club.start_time }} - {{ club.end_time }} </br></p>
-            <p>{{ club.location|linebreaksbr }}</p>
-        </article>
+        <div class="outlined">
+            <article class="club">
+                <time class="date">
+                    {{ club.published_date }}
+                </time>
+                <h2><a href="{% url 'club_detail' pk=club.pk %}">{{ club.title }}</a></h2>
+                <p>Interest: {{ club.interest|linebreaksbr }}</p>
+                <p>{{ club.start_time }} - {{ club.end_time }} </br></p>
+                <p>{{ club.location|linebreaksbr }}</p>
+            </article>
+        </div></br>
     {% endfor %}
 {% endblock %}

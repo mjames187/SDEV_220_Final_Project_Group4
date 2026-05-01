@@ -10,7 +10,10 @@
     <body>
         <header class="page-header">
         <div class="container">
-            <h1><a href="/">Club Listings</a></h1>
+            <a href="{% url 'filter' %}" class="top-menu">
+                Filters
+            </a>
+            <h1><a href="/">Club Liftoff!</a></h1>
             <div class="auth-links">
                 {% if user.is_authenticated %}
                     <span>Welcome, {{ user.username }}!</span>

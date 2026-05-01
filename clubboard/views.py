@@ -76,3 +76,6 @@ def register(request):
 def user_logout(request):
     logout(request)
     return redirect('/')
+
+def filter(request):
+    return render(request, 'clubboard/filter.html', {})

@@ -26,6 +26,13 @@
             <div class="outlined">
                 <p>{{ post.text }}</p>
                 <small>By {{ post.authors }} on {{ post.created_date }}</small>
+                <a href="{% url 'reply_new' post.pk %}" class="reply-link">Reply</a>
+                {% for reply in post.published_replies %}
+                    <div class="reply">
+                        <p>{{ reply.text }}</p>
+                        <small>By {{ reply.authors }} on {{ reply.created_date }}</small>
+                    </div>
+                {% endfor %}
             </div>
         {% empty %}
             <p>No posts yet.</p>

@@ -37,7 +37,12 @@ class Post(models.Model):
     def __str__(self):
         return self.text   
 
+    @property
+    def published_replies(self):
+        return self.replies.filter(published_date__lte=timezone.now()).order_by('created_date')
+
 class reply(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='replies')
     authors =models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
     text = models.TextField()
     created_date = models.DateTimeField(default = timezone.now)
@@ -46,3 +51,6 @@ class reply(models.Model):
     def publish(self):
         self.published_date = timezone.now()
         self.save()
+
+    def __str__(self):
+        return self.text

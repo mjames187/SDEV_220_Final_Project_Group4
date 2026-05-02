@@ -1,6 +1,7 @@
 {% extends 'clubboard/base.html' %}
 
 {% block content %}
+    <a href="{% url 'club_new' %}">Add club</a>
     {% for club in clubs %}
         <div class="outlined">
             <article class="club">
@@ -9,7 +10,7 @@
                 </time>
                 <h2><a href="{% url 'club_detail' pk=club.pk %}">{{ club.title }}</a></h2>
                 <p>Interest: {{ club.interest|linebreaksbr }}</p>
-                <p>{{ club.start_time }} - {{ club.end_time }} </br></p>
+                <p>{{ club.days }}: {{ club.start_time }} - {{ club.end_time }} </br></p>
                 <p>{{ club.location|linebreaksbr }}</p>
             </article>
         </div></br>

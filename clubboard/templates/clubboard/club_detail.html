@@ -13,7 +13,7 @@
             {% csrf_token %}
             <button type="submit" name="add_interest" value="1">Add Interest</button>
         </form>
-        <p>{{ club.start_time }} - {{ club.end_time }} </br></p>
+        <p>{{ club.days }}: {{ club.start_time }} - {{ club.end_time }} </br></p>
         <p>{{ club.location|linebreaksbr }}</p>
         <p>{{ club.description|linebreaksbr }}</p>
         <div>

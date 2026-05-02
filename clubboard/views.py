@@ -7,7 +7,7 @@ from django.contrib.auth import logout
 from .models import Club
 from .models import Post
 from .models import reply
-from .forms import PostForm, ReplyForm
+from .forms import ClubForm, PostForm, ReplyForm
 
 
 # Create your views here.
@@ -26,6 +26,22 @@ def club_detail(request, pk):
         club.interest += 1
         club.save()
     return render(request, 'clubboard/club_detail.html', {'club': club, 'posts': posts})   
+
+def club_new(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+    if request.method == "POST":
+        form = ClubForm(request.POST)
+        if form.is_valid():
+            club = form.save(commit=False)
+            club.authors = request.user
+            club.published_date = timezone.now()
+            club.interest = 0
+            club.save()
+            return redirect('club_list')
+    else:
+        form = ClubForm()
+    return render(request, 'clubboard/club_edit.html', {'form': form})
 
 def post_new(request, club_pk):
     if not request.user.is_authenticated:

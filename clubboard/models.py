@@ -9,6 +9,7 @@ class Club(models.Model):
     published_date = models.DateTimeField(blank = True, null = True)
     title = models.CharField(max_length = 50)
     location = models.CharField(max_length = 50)
+    days = models.TextField(max_length = 100)
     start_time = models.TimeField()
     end_time = models.TimeField()
     sponsor = models.CharField(max_length = 50)

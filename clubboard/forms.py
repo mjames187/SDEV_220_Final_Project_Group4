@@ -1,6 +1,12 @@
 from django import forms
 
-from .models import Post, reply
+from .models import Club, Post, reply
+
+class ClubForm(forms.ModelForm):
+
+    class Meta:
+        model = Club
+        fields = ('title','location','days','start_time','end_time','sponsor','description',)
 
 class PostForm(forms.ModelForm):
 

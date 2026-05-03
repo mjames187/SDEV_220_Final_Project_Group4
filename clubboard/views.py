@@ -1,23 +1,24 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.db.models import Prefetch
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout
 from .models import Club
 from .models import Post
 from .models import reply
-from .forms import ClubForm, PostForm, ReplyForm
+from .forms import ClubForm, PostForm, ReplyForm, FilterForm
 
 
 # Create your views here.
 def club_list(request):
-    clubs = Club.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    filt_input = request.GET.get('search') if request.GET.get('search') else ''
+    if filt_input:
+        clubs = Club.objects.filter(Q(title__icontains=filt_input) | Q(description__icontains=filt_input) | Q(sponsor__icontains=filt_input), published_date__lte=timezone.now()).order_by('published_date')
+    else:
+        clubs = Club.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     return render(request, 'clubboard/club_list.html', {'clubs': clubs})
-
-def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'clubboard/post_list.html', {'posts': posts})
 
 def club_detail(request, pk):
     club = get_object_or_404(Club, pk=pk)
@@ -106,6 +107,3 @@ def register(request):
 def user_logout(request):
     logout(request)
     return redirect('/')
-
-def filter(request):
-    return render(request, 'clubboard/filter.html', {})

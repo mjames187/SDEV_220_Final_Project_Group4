@@ -19,3 +19,9 @@ class ReplyForm(forms.ModelForm):
     class Meta:
         model = reply
         fields = ('text',)
+
+class FilterForm(forms.ModelForm):
+
+    class Meta:
+        model = Club
+        fields = ('start_time','end_time')

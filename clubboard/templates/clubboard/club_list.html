@@ -1,7 +1,14 @@
 {% extends 'clubboard/base.html' %}
 
 {% block content %}
-    <a href="{% url 'club_new' %}">Add club</a>
+    <form method="get" class="top-menu">
+        <div class="row-auto">
+            <input type="text" name="search" class="form-control" placeholder="Search">
+            <button type="submit" class="btn btn-primary">Search</button>
+            <a href="{% url 'club_list' %}" class="btn btn-primary">Undo</a>
+        </div>
+    </form>
+    <a href="{% url 'club_new' %}" class="btn btn-primary">Add club</a></br></br></br></br>
     {% for club in clubs %}
         <div class="outlined">
             <article class="club">

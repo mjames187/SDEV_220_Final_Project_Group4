@@ -15,6 +15,7 @@ class Club(models.Model):
     sponsor = models.CharField(max_length = 50)
     description =  models.CharField(max_length = 100)
     interest = models.IntegerField()
+    int_users = models.JSONField(null = True)
 
     def publish(self):
         self.published_date = timezone.now()

@@ -22,9 +22,22 @@ def post_list(request):
 def club_detail(request, pk):
     club = get_object_or_404(Club, pk=pk)
     posts = club.posts.filter(published_date__lte=timezone.now()).order_by('-created_date').prefetch_related('replies')
+    user_allowed = True
     if request.method == 'POST' and 'add_interest' in request.POST:
-        club.interest += 1
-        club.save()
+        if not request.user.is_authenticated:
+            return redirect('login')
+        else:
+            for item in club.int_users:
+                if item == str(request.user):
+                    club.interest -= 1
+                    club.int_users.remove(item)
+                    club.save()
+                    user_allowed = False
+            if user_allowed:
+                club.interest += 1
+                club.int_users.append(str(request.user))
+                club.save()
+            
     return render(request, 'clubboard/club_detail.html', {'club': club, 'posts': posts})   
 
 def club_new(request):
@@ -37,6 +50,7 @@ def club_new(request):
             club.authors = request.user
             club.published_date = timezone.now()
             club.interest = 0
+            club.int_users = []
             club.save()
             return redirect('club_list')
     else:

@@ -14,7 +14,7 @@
             <button type="submit" name="add_interest" class="btn btn-primary" value="1">Add Interest</button>
         </form></br>
         <p>{{ club.days }}: {{ club.start_time }} - {{ club.end_time }} </br></p>
-        <p>{{ club.location|linebreaksbr }}</p>
+        <p>Location: {{ club.location|linebreaksbr }}</p>
         <p>{{ club.description|linebreaksbr }}</p>
         <div>
             <a href="{% url 'post_new' club.pk %}" class="my-link">

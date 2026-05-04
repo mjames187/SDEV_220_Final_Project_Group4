@@ -8,7 +8,7 @@ from django.contrib.auth import logout
 from .models import Club
 from .models import Post
 from .models import reply
-from .forms import ClubForm, PostForm, ReplyForm, FilterForm
+from .forms import ClubForm, PostForm, ReplyForm
 
 
 # Create your views here.

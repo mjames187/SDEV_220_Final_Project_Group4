@@ -68,15 +68,15 @@ h4 {
 
 .btn-secondary,
 .btn-secondary:visited {
-    color: #C25100;
+    color: #800086;
     background: none;
-    border-color: #C25100;
+    border-color: #800086;
     margin-left: 15px;
 }
 
 .btn-secondary:hover {
     color: #FFFFFF;
-    background-color: #C25100;
+    background-color: #b200bc;
 }
 
 .outlined {
@@ -90,9 +90,4 @@ h4 {
   margin-bottom: 20px;
   border-radius: 8px;
   background-color: white;
-}
-
-.card {
-  margin-top: 10px;
-  padding: 10px;
 }
